@@ -7,18 +7,20 @@ class Program
     {
         List<ValueClass> list = new List<ValueClass>();
 
-        ValueClass value1 = new ValueClass("@+Miguel", "1009");
-        ValueClass value2 = new ValueClass("=-Alma", "==3445");
-        ValueClass value3 = new ValueClass("+-Pepe", "@@23456");
-        ValueClass value4 = new ValueClass("=@Manolo", "++23556");
-        ValueClass value5 = new ValueClass("\nJijuile", "\t--234");
+        list = AddUserToList(list);
 
-        list.Add(value1);
-        list.Add(value2);
-        list.Add(value3);
-        list.Add(value4);
-        list.Add(value5);
+        list = Validation(list);
 
+        foreach (var info in list)
+        {
+            Console.WriteLine($"Name {info.name} --- ID {info.id}");
+        }
+        
+    }
+
+    // Validation method 
+    public static List<ValueClass> Validation(List<ValueClass> list)
+    {
         foreach (var info in list)
         {
             //Value Name
@@ -38,10 +40,23 @@ class Program
             }
         }
 
-        foreach (var info in list)
-        {
-            Console.WriteLine($"Name {info.name} --- ID {info.id}");
-        }
-        
+        return list;
     }
+
+    public static List<ValueClass> AddUserToList(List<ValueClass> list)
+    {
+        ValueClass valueClass = new ValueClass();
+
+        Console.WriteLine("User name: ");
+        valueClass.name = Console.ReadLine();
+
+        Console.WriteLine("User ID: ");
+        valueClass.id = Console.ReadLine();
+
+        list.Add(valueClass);
+
+        return list;
+
+    }
+
 }
